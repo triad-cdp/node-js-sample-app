@@ -11,7 +11,7 @@ node {
         sh "node -v"
         sh "npm -v"
         sh "bower -v"
-        sh "gulp -v"
+    //    sh "gulp -v"
     }
 
     stage('npm install') {
@@ -32,15 +32,15 @@ node {
         }
     }
 
-    stage('frontend tests') {
-        try {
-            sh "gulp test"
-        } catch(err) {
-            throw err
-        } finally {
-            step([$class: 'JUnitResultArchiver', testResults: '**/target/test-results/karma/TESTS-*.xml'])
-        }
-    }
+//    stage('frontend tests') {
+//        try {
+//            sh "gulp test"
+//        } catch(err) {
+//            throw err
+//        } finally {
+//            step([$class: 'JUnitResultArchiver', testResults: '**/target/test-results/karma/TESTS-*.xml'])
+//        }
+//    }
 
     stage('packaging') {
         sh "./mvnw package -Pprod -DskipTests"
